@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rsiGreen-50: #ecfdf5;
+  --color-rsiGreen-100: #d1fae5;
+  --color-rsiGreen-200: #a7f3d0;
+  --color-rsiGreen-300: #6ee7b7;
+  --color-rsiGreen-400: #34d399;
+  --color-rsiGreen-500: #10b981;
+  --color-rsiGreen-600: #059669;
+  --color-rsiGreen-700: #047857;
+  --color-rsiGreen-800: #065f46;
+  --color-rsiGreen-900: #064e3b;
+
+  --color-rsiCream-50: #fdfbf7;
+  --color-rsiCream-100: #f8f5ed;
+  --color-rsiCream-200: #ebe5d5;
+  --color-rsiCream-300: #dcd1b9;
+  --color-rsiCream-400: #c5b493;
+  --color-rsiCream-500: #aa956e;
+
+  --color-rsiDark-800: #1c1d22;
+  --color-rsiDark-900: #0d0e12;
+  --color-rsiDark-950: #050608;
+
+  --font-serif: "Cormorant Garamond", "Cinzel", "Playfair Display", serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+
+  --letter-spacing-widest: 0.25em;
+  --letter-spacing-mega: 0.4em;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #050608;
+    color: #f3f4f6;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d0e12;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+  }
+}
+
+@utility text-glow-emerald {
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+@utility text-glow-gold {
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+}
+
+@utility box-glow-emerald {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+@utility box-glow-orange {
+  box-shadow: 0 0 25px rgba(249, 115, 22, 0.12);
+}
+
+/* Custom keyframes & utilities */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s infinite;
+}
+
+@keyframes record-flash {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-record {
+  animation: record-flash 1.5s infinite;
+}
+
+/* Glassmorphism card */
+.glass-panel {
+  background: rgba(13, 14, 18, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Lens flare & Fog backgrounds */
+.ambient-fog {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  mix-blend-mode: screen;
+}
+
+.lens-flare-orange {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.25;
+  background: radial-gradient(circle, rgba(249,115,22,0.4) 0%, rgba(234,179,8,0.1) 50%, rgba(0,0,0,0) 100%);
+}
