@@ -27,11 +27,11 @@ export default function HeroSection({ onOpenRSVP }) {
         </div>
 
         {/* Camera Metrics Overlay */}
-        <div className="absolute top-4 left-6 flex items-center gap-2 text-xs text-white/70 tracking-widest font-mono">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-record"></span>
-          <span>REC</span>
+        <div className="absolute top-36 md:top-6 left-6 flex items-center gap-2 text-xs md:text-sm text-white/80 tracking-widest font-mono">
+          <span className="w-3.5 h-3.5 rounded-full bg-red-600 animate-record shadow-sm shadow-red-600/50"></span>
+          <span className="font-bold">REC</span>
         </div>
-        <div className="absolute top-4 right-6 text-xs text-white/70 tracking-widest font-mono">
+        <div className="absolute top-36 md:top-6 right-6 text-xs md:text-sm font-bold text-white/80 tracking-widest font-mono">
           <span>25FPS</span>
         </div>
 
