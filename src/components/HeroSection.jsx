@@ -27,11 +27,11 @@ export default function HeroSection({ onOpenRSVP }) {
         </div>
 
         {/* Camera Metrics Overlay */}
-        <div className="absolute top-36 md:top-6 left-6 flex items-center gap-2 text-xs md:text-sm text-white/80 tracking-widest font-mono">
+        <div className="absolute top-4 md:top-6 left-6 flex items-center gap-2 text-xs md:text-sm text-white/80 tracking-widest font-mono">
           <span className="w-3.5 h-3.5 rounded-full bg-red-600 animate-record shadow-sm shadow-red-600/50"></span>
           <span className="font-bold">REC</span>
         </div>
-        <div className="absolute top-36 md:top-6 right-6 text-xs md:text-sm font-bold text-white/80 tracking-widest font-mono">
+        <div className="absolute top-4 md:top-6 right-6 text-xs md:text-sm font-bold text-white/80 tracking-widest font-mono">
           <span>25FPS</span>
         </div>
 
@@ -53,15 +53,24 @@ export default function HeroSection({ onOpenRSVP }) {
       <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-20">
         
         {/* Left Side: Typography & Text */}
-        <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-6 md:space-y-8 pl-0 md:pl-8">
+        <div className="lg:col-span-7 flex flex-col justify-center text-center lg:text-left items-center lg:items-start space-y-6 md:space-y-8 pl-0 md:pl-8">
           
-          <div className="space-y-3">
+          {/* Brand Logo (Visible only on mobile above tagline, centered) */}
+          <div className="flex lg:hidden justify-center mb-2">
+            <img 
+              src="/logo.resende.PNG" 
+              alt="Resende Logo" 
+              className="h-24 sm:h-28 w-auto object-contain"
+            />
+          </div>
+
+          <div className="space-y-3 w-full flex flex-col items-center lg:items-start">
             {/* Tagline */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6 justify-center lg:justify-start">
               <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-mega text-rsiCream-300 font-bold uppercase text-glow-gold">
                 CONVITE ESPECIAL
               </span>
-              <div className="h-[1.5px] w-32 bg-rsiCream-500/40"></div>
+              <div className="h-[1.5px] w-24 bg-rsiCream-500/40 hidden lg:block"></div>
             </div>
           </div>
 
@@ -79,7 +88,7 @@ export default function HeroSection({ onOpenRSVP }) {
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto px-4 sm:px-0">
             <button 
               onClick={onOpenRSVP}
               className="px-8 py-4 bg-rsiGreen-500 text-rsiDark-950 font-bold tracking-wider rounded-lg hover:bg-white hover:text-black transition-all duration-300 shadow-lg hover:shadow-rsiGreen-500/20 text-center"

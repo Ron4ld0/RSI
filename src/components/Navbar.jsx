@@ -28,11 +28,18 @@ export default function Navbar({ onOpenRSVP }) {
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-2 group">
+        <a 
+          href="#" 
+          className={`items-center gap-2 group transition-all duration-300 ${
+            isScrolled ? 'flex' : 'hidden md:flex'
+          }`}
+        >
           <img 
             src="/logo.resende.PNG" 
             alt="Resende Logo" 
-            className="h-20 md:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 ${
+              isScrolled ? 'h-12 md:h-16' : 'h-16 md:h-24'
+            }`}
           />
         </a>
 
