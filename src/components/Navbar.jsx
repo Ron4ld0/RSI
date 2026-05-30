@@ -29,10 +29,11 @@ export default function Navbar({ onOpenRSVP }) {
         
         {/* Brand Logo */}
         <a href="#" className="flex items-center gap-2 group">
-          <span className="text-xl font-bold tracking-widest font-serif text-white group-hover:text-rsiGreen-400 transition-colors">
-            RSI
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-rsiGreen-500 group-hover:scale-125 transition-transform"></span>
+          <img 
+            src="/logo.resende.PNG" 
+            alt="Resende Logo" 
+            className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         </a>
 
         {/* Desktop Nav Items */}

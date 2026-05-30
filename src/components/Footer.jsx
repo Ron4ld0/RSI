@@ -11,8 +11,12 @@ export default function Footer() {
         
         {/* Left Side: Logo & Copyright */}
         <div className="flex items-center gap-4">
-          <div className="border border-white/20 py-1.5 px-4 rounded">
-            <span className="text-lg font-bold tracking-widest font-serif text-white">RSI</span>
+          <div className="border border-white/10 p-1.5 rounded bg-white/5">
+            <img 
+              src="/logo.resende.PNG" 
+              alt="Resende Logo" 
+              className="h-8 md:h-10 w-auto object-contain"
+            />
           </div>
           <span className="text-xs text-gray-500 font-light hidden sm:inline">
             © {new Date().getFullYear()} Resende Soluções Imobiliárias.
