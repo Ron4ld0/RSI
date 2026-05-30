@@ -27,11 +27,11 @@ export default function HeroSection({ onOpenRSVP }) {
         </div>
 
         {/* Camera Metrics Overlay */}
-        <div className="absolute top-4 md:top-6 left-6 flex items-center gap-2 text-xs md:text-sm text-white/80 tracking-widest font-mono">
+        <div className="absolute top-16 md:top-20 left-6 flex items-center gap-2 text-xs md:text-sm text-white/80 tracking-widest font-mono">
           <span className="w-3.5 h-3.5 rounded-full bg-red-600 animate-record shadow-sm shadow-red-600/50"></span>
           <span className="font-bold">REC</span>
         </div>
-        <div className="absolute top-4 md:top-6 right-6 text-xs md:text-sm font-bold text-white/80 tracking-widest font-mono">
+        <div className="absolute top-16 md:top-20 right-6 text-xs md:text-sm font-bold text-white/80 tracking-widest font-mono">
           <span>25FPS</span>
         </div>
 
@@ -56,11 +56,11 @@ export default function HeroSection({ onOpenRSVP }) {
         <div className="lg:col-span-7 flex flex-col justify-center text-center lg:text-left items-center lg:items-start space-y-6 md:space-y-8 pl-0 md:pl-8">
           
           {/* Brand Logo (Visible only on mobile above tagline, centered) */}
-          <div className="flex lg:hidden justify-center mb-2">
+          <div className="flex lg:hidden justify-center mb-6">
             <img 
               src="/logo.resende.PNG" 
               alt="Resende Logo" 
-              className="h-24 sm:h-28 w-auto object-contain"
+              className="h-28 sm:h-32 w-auto object-contain"
             />
           </div>
 
