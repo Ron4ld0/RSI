@@ -48,6 +48,9 @@ const CARDS_DATA = [
 
 export default function HistoryCarousel({ onOpenVideo }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(1);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   // Responsive items to show: Mobile = 1, Tablet = 2, Desktop = 3
   const getVisibleCount = () => {
@@ -57,8 +60,6 @@ export default function HistoryCarousel({ onOpenVideo }) {
     }
     return 1; // Default/Mobile
   };
-
-  const [visibleCount, setVisibleCount] = useState(3);
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -77,6 +78,32 @@ export default function HistoryCarousel({ onOpenVideo }) {
 
   const handleNext = () => {
     setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
+  };
+
+  // Touch handlers for mobile swipe
+  const minSwipeDistance = 50;
+
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentIndex < maxIndex) {
+      handleNext();
+    }
+    if (isRightSwipe && currentIndex > 0) {
+      handlePrev();
+    }
   };
 
   return (
@@ -104,26 +131,32 @@ export default function HistoryCarousel({ onOpenVideo }) {
           <button
             onClick={handlePrev}
             disabled={currentIndex === 0}
-            className={`absolute left-0 z-35 p-3 rounded-full border border-white/10 bg-black/60 text-white transition-all hover:bg-rsiGreen-500 hover:text-black hover:border-rsiGreen-500 disabled:opacity-30 disabled:hover:bg-black/60 disabled:hover:text-white disabled:hover:border-white/10`}
+            className="hidden md:flex absolute left-0 z-30 p-3 rounded-full border border-white/10 bg-black/60 text-white transition-all hover:bg-rsiGreen-500 hover:text-black hover:border-rsiGreen-500 disabled:opacity-30 disabled:hover:bg-black/60 disabled:hover:text-white disabled:hover:border-white/10 items-center justify-center"
             aria-label="Anterior"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
 
           {/* Slider Content Viewport */}
-          <div className="w-full overflow-hidden mx-10 md:mx-4">
+          <div 
+            className="w-full overflow-hidden mx-0 md:mx-12"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div 
               className="flex transition-transform duration-500 ease-out gap-6"
               style={{
-                transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
-                width: `${(CARDS_DATA.length / visibleCount) * 100}%`
+                transform: `translateX(calc(-${currentIndex} * (100% + 1.5rem) / ${visibleCount}))`
               }}
             >
               {CARDS_DATA.map((card) => (
                 <div 
                   key={card.id}
-                  className="relative aspect-[3/4] rounded-xl overflow-hidden border border-white/10 bg-rsiDark-900 group/card cursor-pointer shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:border-rsiGreen-500/30"
-                  style={{ width: `calc(${100 / CARDS_DATA.length}% - 1.5rem)` }}
+                  className="relative aspect-[3/4] rounded-xl overflow-hidden border border-white/10 bg-rsiDark-900 group/card cursor-pointer shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:border-rsiGreen-500/30 shrink-0"
+                  style={{ 
+                    flex: `0 0 calc((100% - (${visibleCount} - 1) * 1.5rem) / ${visibleCount})`
+                  }}
                   onClick={() => card.isVideo ? onOpenVideo() : null}
                 >
                   {/* Card Image */}
@@ -163,7 +196,7 @@ export default function HistoryCarousel({ onOpenVideo }) {
           <button
             onClick={handleNext}
             disabled={currentIndex === maxIndex}
-            className={`absolute right-0 z-35 p-3 rounded-full border border-white/10 bg-black/60 text-white transition-all hover:bg-rsiGreen-500 hover:text-black hover:border-rsiGreen-500 disabled:opacity-30 disabled:hover:bg-black/60 disabled:hover:text-white disabled:hover:border-white/10`}
+            className="hidden md:flex absolute right-0 z-30 p-3 rounded-full border border-white/10 bg-black/60 text-white transition-all hover:bg-rsiGreen-500 hover:text-black hover:border-rsiGreen-500 disabled:opacity-30 disabled:hover:bg-black/60 disabled:hover:text-white disabled:hover:border-white/10 items-center justify-center"
             aria-label="Próximo"
           >
             <ChevronRight className="w-6 h-6" />
